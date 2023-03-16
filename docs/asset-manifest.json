@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.ebe7a35c.js",
-    "index.html": "/index.html",
-    "main.ebe7a35c.js.map": "/static/js/main.ebe7a35c.js.map"
+    "main.js": "/react-todo/static/js/main.ebe7a35c.js",
+    "index.html": "/react-todo/index.html",
+    "main.ebe7a35c.js.map": "/react-todo/static/js/main.ebe7a35c.js.map"
   },
   "entrypoints": [
     "static/js/main.ebe7a35c.js"
