@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import AddItem from "./AddItem";
+import List from "./List";
 
 function App() {
+  const [list, setList] = useState(() => {
+    const initialList = JSON.parse(localStorage.getItem('list'));
+    return initialList ? initialList : []
+  });
+
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [list]);
+
+  function updateItem(index, value){
+    setList((prevList) => prevList.map((item, i) => {
+      return index === i ? value : item
+    }))
+  }
+  function addItem(value){
+    setList((prevList) => [...prevList, value])
+  }
+
+  function deleteItem(index){
+    setList((prevList) => prevList.filter((value, i) => i !== index))
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>my awesome todo list!</h1>
+      <List
+        list={list}
+        handleChange={updateItem}
+        handleDeleteClick={deleteItem} />
+
+        <AddItem handleSubmit={addItem}/>
     </div>
   );
 }
